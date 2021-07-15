@@ -45,4 +45,14 @@ router.get('/register', function(req, res, next) {
   //res.send('Hello World');
 });
 
+/* GET My List of Friends/Users in Contacts page. */
+router.get('/contacts', function(req, res, next) {
+  User.find((err, data) => {
+    if (err) throw err;
+    res.render('../views/users/contacts', { title: 'Select Contact', friends: data });
+  });
+  
+  //res.send('Hello World');
+});
+
 module.exports = router;

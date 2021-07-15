@@ -3,9 +3,20 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+    <%- include('../views/partials/stylelink') %>
   </head>
   <body>
+    
+    <%- include("../views/partials/navbar") %>
     <h1>Welcome to <%= title %> </h1>
     <p><%= homeMessage %></p>
+    <p>Home Page</p>
+	
+	<!--SCripts-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket =  io();
+    </script>
   </body>
 </html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <%- include('../partials/stylelink') %>
+
+        <%- include('../partials/externalcontact') %>
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+
+        <div class="container">
+            <div class="card-header">
+                <div class="input-group">
+                    <div>
+                        <span class="user_info">
+                             <b><%= title %></b>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body contacts_body">
+                <div class="contacts">
+                    <li class="active">
+                        <% for(var i=0; i<friends.length; i++) { %>
+                            <div class="d-flex bd-highlight">
+
+                                <div class="img_cont">
+                                    <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                        class="rounded-circle user_img">
+                                    <span class="online_icon"></span>
+                                </div>
+                                <div class="user_info">
+
+                                    <span>
+                                        <%= friends[i].username %>
+                                    </span>
+                                    <p>
+                                        <%- friends[i].username %> is online
+                                    </p>
+
+                                </div>
+                                <div class="user_info">
+                                    <button>View Conversation</button>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <% } %>
+                    </li>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -9,7 +9,22 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var chatsRouter = require('./routes/chats');
 
-var app = express();
+var app = express(); //Same as var app = require('express')();
+
+var http = require('http').Server(app);
+//-------------------
+
+/**      "start": "nodemon ./bin/www -e js,ejs,html -w . -w public -w views -w routes -w models"
+ */
+var io = require('socket.io')(http);
+
+io.on('connection', (socket) => {
+  console.log('Socket is connected');
+  socket('disconnect', () => {
+    console.log('Socket Disconnected');
+  })
+})
+//-------------------
 
 //Connect to Database
 mongoose.connect('mongodb://localhost:27017/projectdb',
@@ -25,7 +40,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
